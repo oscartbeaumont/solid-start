@@ -18,32 +18,23 @@ export function StartServer(props: { document: Component<DocumentComponentProps>
         assets={<>{context.assets.map((m: any) => renderAsset(m))}</>}
         scripts={
           nonce ? (
-            <>
-              <script
-                nonce={nonce}
-                innerHTML={`window.manifest = ${JSON.stringify(context.manifest)}`}
-              />
-              <script
-                type="module"
-                src={
-                  import.meta.env.MANIFEST["client"]!.inputs[
-                    import.meta.env.MANIFEST["client"]!.handler
-                  ]!.output.path
-                }
-              />
-            </>
+            <script
+              type="module"
+              src={
+                import.meta.env.MANIFEST["client"]!.inputs[
+                  import.meta.env.MANIFEST["client"]!.handler
+                ]!.output.path
+              }
+            />
           ) : (
-            <>
-              <script innerHTML={`window.manifest = ${JSON.stringify(context.manifest)}`} />
-              <script
-                type="module"
-                src={
-                  import.meta.env.MANIFEST["client"]!.inputs[
-                    import.meta.env.MANIFEST["client"]!.handler
-                  ]!.output.path
-                }
-              />
-            </>
+            <script
+              type="module"
+              src={
+                import.meta.env.MANIFEST["client"]!.inputs[
+                  import.meta.env.MANIFEST["client"]!.handler
+                ]!.output.path
+              }
+            />
           )
         }
       />

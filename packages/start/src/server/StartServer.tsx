@@ -79,35 +79,26 @@ export function StartServer(props: { document: Component<DocumentComponentProps>
         }
         scripts={
           nonce ? (
-            <>
-              <script
-                nonce={nonce}
-                innerHTML={`window.manifest = ${JSON.stringify(context.manifest)}`}
-              />
-              <script
-                type="module"
-                nonce={nonce}
-                async
-                src={
-                  import.meta.env.MANIFEST["client"]!.inputs[
-                    import.meta.env.MANIFEST["client"]!.handler
-                  ]!.output.path
-                }
-              />
-            </>
+            <script
+              type="module"
+              nonce={nonce}
+              async
+              src={
+                import.meta.env.MANIFEST["client"]!.inputs[
+                  import.meta.env.MANIFEST["client"]!.handler
+                ]!.output.path
+              }
+            />
           ) : (
-            <>
-              <script innerHTML={`window.manifest = ${JSON.stringify(context.manifest)}`} />
-              <script
-                type="module"
-                async
-                src={
-                  import.meta.env.MANIFEST["client"]!.inputs[
-                    import.meta.env.MANIFEST["client"]!.handler
-                  ]!.output.path
-                }
-              />
-            </>
+            <script
+              type="module"
+              async
+              src={
+                import.meta.env.MANIFEST["client"]!.inputs[
+                  import.meta.env.MANIFEST["client"]!.handler
+                ]!.output.path
+              }
+            />
           )
         }
       >
